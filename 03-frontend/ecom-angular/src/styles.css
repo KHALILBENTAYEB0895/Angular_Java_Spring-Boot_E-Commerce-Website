@@ -784,7 +784,8 @@ footer{
     background:#232324;
     z-index:1;
     position:relative;
-    text-align:center
+    text-align:center;
+    padding: 2px;
 }
 footer li a{
     color:#313131;
