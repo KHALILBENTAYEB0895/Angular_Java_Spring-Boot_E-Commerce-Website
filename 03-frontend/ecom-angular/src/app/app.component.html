@@ -1,5 +1,4 @@
-<div class="page-wrapper">
-
+<div class="page-wrapper d-flex" style="min-height: 100vh;">
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
@@ -15,7 +14,7 @@
   <div class="page-container">
     <!-- HEADER DESKTOP-->
     <header class="header-desktop">
-      <div class="section-content section-content-p30" style="padding: 10px;"> <!-- Reduced padding -->
+      <div class="section-content section-content-p30" style="padding: 10px;">
         <div class="container-fluid">
           <div class="header-wrap">
             <app-search></app-search>
@@ -30,22 +29,21 @@
         </div>
       </div>
     </header>
-    
     <!-- END HEADER DESKTOP-->
 
     <!-- MAIN CONTENT-->
-     <!-- <app-product-list style="margin-top: 100px !important;"></app-product-list> -->
+    <main class="flex-fill">
       <router-outlet></router-outlet>
+    </main>
     <!-- END MAIN CONTENT-->
   </div>
 </div>
-
 <!-- END PAGE CONTAINER-->
 
-<footer>
+<footer class="bg-dark text-white text-center py-3 mt-auto">
   <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Help</a></li>
+    <li><a href="#" class="text-white">About Us</a></li>
+    <li><a href="#" class="text-white">Contact Us</a></li>
+    <li><a href="#" class="text-white">Help</a></li>
   </ul>
 </footer>
