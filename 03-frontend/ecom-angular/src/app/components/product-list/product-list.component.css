@@ -1,0 +1,15 @@
+.card {
+    height: 300px !important; /* Fixer une hauteur pour la carte */
+  }
+  
+  .card-img-top {
+    width: 60% !important; /* Largeur de l'image */
+    height: auto; /* Conserver le ratio de l'image */
+    margin: auto; /* Centrer l'image */
+  }
+  
+  .row {
+    margin-left : -15px !important; /* Ajuster les marges pour éviter le débordement */
+    margin-right: -15px !important;
+  }
+  
