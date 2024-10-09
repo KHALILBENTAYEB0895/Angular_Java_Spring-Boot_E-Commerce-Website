@@ -24,15 +24,32 @@
     </div>
   </div>
 
-  <!-- Pagination Component -->
-  <ngb-pagination 
-     [collectionSize]="theTotalElements" 
-     [(page)]="thePageNumber" 
-     [pageSize]="thePageSize" 
-     (pageChange)="listProducts()">
-  </ngb-pagination>
+  <!-- Pagination and Select Row -->
+  <div class="d-flex justify-content-center mt-4">
+    <!-- Pagination Component -->
+    <div class="d-flex justify-content-center me-3">
+      <ngb-pagination 
+         [collectionSize]="theTotalElements" 
+         [(page)]="thePageNumber" 
+         [pageSize]="thePageSize" 
+         (pageChange)="listProducts()">
+      </ngb-pagination>
+    </div>
 
+    <!-- Select for page size -->
+    <div>
+      <select #myPageSelect (change)="updatePageSize(myPageSelect.value)"
+       class="form-select form-select-sm" 
+       style="width: auto;">
+        <option selected="true">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+  </div>
 </div>
+
 
 
 
