@@ -23,6 +23,15 @@
       No products found.
     </div>
   </div>
+
+  <!-- Pagination Component -->
+  <ngb-pagination 
+     [collectionSize]="theTotalElements" 
+     [(page)]="thePageNumber" 
+     [pageSize]="thePageSize" 
+     (pageChange)="listProducts()">
+  </ngb-pagination>
+
 </div>
 
 
