@@ -31,7 +31,8 @@
       <ngb-pagination 
          [collectionSize]="theTotalElements" 
          [(page)]="thePageNumber" 
-         [pageSize]="thePageSize" 
+         [pageSize]="thePageSize"
+         [maxSize]="5"
          (pageChange)="listProducts()">
       </ngb-pagination>
     </div>
