@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit{
-  
+
   products: Product[] = [];
   currentCategoryId: number =1;
   previousCategoryId: number = 1;
@@ -105,6 +105,10 @@ export class ProductListComponent implements OnInit{
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     }
+  }
+
+  addToCart(theProduct: Product) {
+    throw new Error('Method not implemented.');
   }
 
 }
