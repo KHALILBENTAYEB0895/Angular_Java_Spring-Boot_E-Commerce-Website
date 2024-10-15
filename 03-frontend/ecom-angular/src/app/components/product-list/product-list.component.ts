@@ -1,8 +1,10 @@
+import { CartService } from './../../services/cart.service';
 import { SearchComponent } from './../search/search.component';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from './../../common/product';
 import { Component, OnInit } from '@angular/core';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-list',
@@ -26,7 +28,8 @@ export class ProductListComponent implements OnInit{
   previousKeyword: string="";
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute,
+              private cartService: CartService){}
   
   ngOnInit() {
     this.route.paramMap.subscribe(()=>{
@@ -108,7 +111,11 @@ export class ProductListComponent implements OnInit{
   }
 
   addToCart(theProduct: Product) {
-    throw new Error('Method not implemented.');
+    console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+
+    const theCartItem = new CartItem(theProduct);
+    
+    this.cartService.addToCart(theCartItem);
   }
 
 }
