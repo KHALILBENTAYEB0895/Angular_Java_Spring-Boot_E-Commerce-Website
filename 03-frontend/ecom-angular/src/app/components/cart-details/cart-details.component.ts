@@ -42,7 +42,7 @@ export class CartDetailsComponent implements OnInit{
     this.cartService.addToCart(cartItem)
   }
   decrementQuantity(cartItem: CartItem) {
-    throw new Error('Method not implemented.');
+    this.cartService.decrementQuantity(cartItem);
   }
 
 }
