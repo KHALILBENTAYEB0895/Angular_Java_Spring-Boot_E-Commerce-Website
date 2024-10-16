@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
 <div class="container-fluid ms-5" style="margin-top: 100px !important;">
     <div class="table-container">
       <div *ngIf="cartItems.length > 0">
@@ -20,7 +22,14 @@
               </td>
               <td>
                 <div>
-                  <label>Quantity:</label>{{tempCartItem.quantity}}
+                  <label>Quantity:</label>
+                  <button class="btn btn-outline-secondary btn-sm p-0 small-btn" (click)="incrementQuantity(tempCartItem)">
+                    <i class="bi bi-caret-up-fill"></i>
+                  </button>
+                  <span>{{tempCartItem.quantity}}</span>
+                  <button class="btn btn-outline-secondary btn-sm p-0 small-btn" (click)="decrementQuantity(tempCartItem)">
+                    <i class="bi bi-caret-down-fill"></i>
+                  </button>
                 </div>
                 <p class="mt-2">Subtotal: {{tempCartItem.quantity * tempCartItem.unitprice | currency: 'USD'}}</p>
               </td>
