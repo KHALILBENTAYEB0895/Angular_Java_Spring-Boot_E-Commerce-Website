@@ -1,1 +1,107 @@
-<p style="margin-top: 100px;">checkout works!</p>
+<div style="margin-top: 100px !important; margin-left: 100px !important;">
+    <div class="container" >
+    
+        <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+          
+          <!-- Customer Information -->
+          <div class="card mb-4" formGroupName="customer">
+            <div class="card-header">
+              <h4>Customer Information</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Address Information -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Shipping Address</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" id="street" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" id="postalCode" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Payment Details -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Payment Details</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="expirationDate">Expiration Date</label>
+                    <input type="text" id="expirationDate" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Purchase</button>
+          </div>
+      
+        </form>
+      </div>
+      
+</div>
