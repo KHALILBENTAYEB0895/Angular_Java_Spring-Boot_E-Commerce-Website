@@ -1,6 +1,5 @@
-<div style="margin-top: 100px !important; margin-left: 100px !important;">
+<div style="margin-top: 100px !important; margin-left: 75px !important;">
     <div class="container" >
-    
         <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
           
           <!-- Customer Information -->
@@ -34,39 +33,119 @@
             </div>
           </div>
       
-          <!-- Address Information -->
-          <div class="card mb-4">
+          <!-- Shipping Address -->
+          <div class="card mb-4" formGroupName="shippingAddress">
             <div class="card-header">
               <h4>Shipping Address</h4>
             </div>
             <div class="card-body">
               <div class="row">
+
                 <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="city">Country</label>
+                      <select class="form-control" formControlName="country">
+                        <option>To Do</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="street">Street</label>
-                    <input type="text" id="street" class="form-control">
+                    <input type="text" formControlName="street" class="form-control">
                   </div>
                 </div>
       
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" id="city" class="form-control">
+                    <input type="text" formControlName="city" class="form-control">
                   </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="city">State</label>
+                      <select class="form-control" formControlName="state">
+                        <option>To Do</option>
+                      </select>
+                    </div>
                 </div>
       
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" id="postalCode" class="form-control">
+                    <label for="postalCode">Zip Code</label>
+                    <input type="text" formControlName="zipCode" class="form-control">
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Add check box to copy shipping to billing-->
+           
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" (change)="copyAddress($event)">
+            <label class="form-check-label" for="flexCheckDefault">
+             Billing Address same as Shipping Address
+            </label>
+          </div>
+          
+
+          <!-- Billing Address -->
+          <div class="card mb-4" formGroupName="billingAddress">
+            <div class="card-header">
+              <h4>Billing Address</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="city">Country</label>
+                      <select class="form-control" formControlName="country">
+                        <option>To Do</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" formControlName="street" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="city">State</label>
+                      <select class="form-control" formControlName="state">
+                        <option>To Do</option>
+                      </select>
+                    </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="postalCode">Zip Code</label>
+                    <input type="text" formControlName="zipCode" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
       
           <!-- Payment Details -->
-          <div class="card mb-4">
+          <div class="card mb-4" formGroupName="creditCard">
             <div class="card-header">
               <h4>Payment Details</h4>
             </div>
@@ -75,7 +154,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" id="cardNumber" class="form-control">
+                    <input type="text" formControlName="cardNumber" class="form-control">
                   </div>
                 </div>
       
@@ -86,6 +165,27 @@
                   </div>
                 </div>
       
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" class="form-control">
+                  </div>
+                </div>
+
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="cvv">CVV</label>
