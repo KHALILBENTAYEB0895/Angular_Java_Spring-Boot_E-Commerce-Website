@@ -151,51 +151,78 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-md-12">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="city">Card Type</label>
+                      <select class="form-control" formControlName="cardType">
+                        <option>Visa</option>
+                        <option>Mastercard</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="cardNumber">Card Number</label>
+                    <label for="cardNumber">Name on Card</label>
+                    <input type="text" formControlName="nameOnCard" class="form-control">
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="expirationDate">card Number</label>
                     <input type="text" formControlName="cardNumber" class="form-control">
                   </div>
                 </div>
       
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="expirationDate">Expiration Date</label>
-                    <input type="text" id="expirationDate" class="form-control">
-                  </div>
-                </div>
-      
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" class="form-control">
+                    <label for="cvv">Security Code</label>
+                    <input type="text" formControlName="securityCode" class="form-control">
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" class="form-control">
-                  </div>
+                    <div class="form-group">
+                      <label for="city">Expiration Month</label>
+                      <select class="form-control" formControlName="expirationMonth">
+                        <option *ngFor="let month of creditCardMonths">
+                          {{month}}
+                        </option>
+                      </select>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" class="form-control">
-                  </div>
+                    <div class="form-group">
+                      <label for="city">Expiration Year</label>
+                      <select class="form-control" formControlName="expirationYear">
+                        <option *ngFor="let year of creditCardYears">
+                          {{year}}
+                        </option>
+                      </select>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" class="form-control">
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
-      
+          <!-- Order details -->
+          <div class="card mb-4" formGroupName="customer">
+            <div class="card-header">
+              <h4>Review Your Order</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <p>Total Quantity: {{totalQuantity}}</p>
+                <p>Shipping: FREE</p>
+                <p>Total Price: {{totalPrice | currency: 'USD'}}</p>
+              </div>
+            </div>
+          </div>
+
           <!-- Submit Button -->
           <div class="text-center">
             <button type="submit" class="btn btn-primary">Purchase</button>
