@@ -1,4 +1,5 @@
 package ma.codeben.ecom_spring_angular.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class State {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "id")
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
