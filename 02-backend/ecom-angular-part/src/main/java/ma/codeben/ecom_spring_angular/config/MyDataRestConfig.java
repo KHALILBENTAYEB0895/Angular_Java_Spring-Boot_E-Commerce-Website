@@ -2,8 +2,10 @@ package ma.codeben.ecom_spring_angular.config;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
+import ma.codeben.ecom_spring_angular.entity.Country;
 import ma.codeben.ecom_spring_angular.entity.Product;
 import ma.codeben.ecom_spring_angular.entity.ProductCategory;
+import ma.codeben.ecom_spring_angular.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -27,19 +29,21 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
         RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
-        //disable HTTP methods for Product: PUT, POST and DELETE
-        config.getExposureConfiguration()
-                .forDomainType(Product.class)
-                .withItemExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions));
+        //disable HTTP methods : PUT, POST and DELETE
+        disableHttpMethods(Product.class, config, theUnsupportedActions);
+        disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
+        disableHttpMethods(Country.class, config, theUnsupportedActions);
+        disableHttpMethods(State.class, config, theUnsupportedActions);
 
-        //disable HTTP methods for ProductCategory: PUT, POST and DELETE
-        config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
-                .withItemExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions));
         // call an internal helper
         exposeIds(config);
+    }
+
+    private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
+        config.getExposureConfiguration()
+                .forDomainType(theClass)
+                .withItemExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metadata, httpMethods)->httpMethods.disable(theUnsupportedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config){
