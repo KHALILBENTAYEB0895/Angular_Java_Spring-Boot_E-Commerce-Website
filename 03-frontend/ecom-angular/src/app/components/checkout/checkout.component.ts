@@ -1,6 +1,8 @@
+import { ShopFromService } from './../../services/shop-from.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ShopFromService } from '../../services/shop-from.service';
+import { Country } from '../../common/country';
+import { State } from '../../common/state';
 
 @Component({
   selector: 'app-checkout',
@@ -16,9 +18,15 @@ export class CheckoutComponent implements OnInit{
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
+
+  countries: Country[] = [];
+
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
+
   
   constructor(private formBuilder: FormBuilder,
-              private shopFromservices: ShopFromService) {}
+              private shopFromServices: ShopFromService) {}
   
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
@@ -56,7 +64,7 @@ export class CheckoutComponent implements OnInit{
     const startMonth: number = new Date().getMonth() + 1;
     console.log("startMonth: " + startMonth);
 
-    this.shopFromservices.getCreditCardMonths().subscribe(
+    this.shopFromServices.getCreditCardMonths().subscribe(
       data => {
         this.creditCardMonths = data;
         console.log("Retrieved credit card months: " + JSON.stringify(data));
@@ -65,15 +73,23 @@ export class CheckoutComponent implements OnInit{
 
     // populate credit card years
 
-    this.shopFromservices.getCreditCardYears().subscribe(
+    this.shopFromServices.getCreditCardYears().subscribe(
       data => {
         this.creditCardYears = data;
         console.log("Retrieved credit card months: " + JSON.stringify(data));
       }
     );
 
+    // populate countries
+    this.shopFromServices.getCountries().subscribe(
+      data => {
+        this.countries =data;
+      }
+    );
+
   }
 
+  
   onSubmit(){
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer')?.value);
@@ -91,5 +107,32 @@ export class CheckoutComponent implements OnInit{
     }
   }
 
+  getStates(formGroupName: string) {
+    
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+
+    const countryCode = formGroup?.value.country.code;
+    const countryName = formGroup?.value.country.name;
+
+    console.log(`{formeGroupeName} country code: ${countryCode}` );
+    console.log(`{formeGroupeName} country name: ${countryName}` );
+
+    this.shopFromServices.getStates(countryCode).subscribe(
+      data =>{
+        if(formGroupName === 'shippingAddress'){
+          this.shippingAddressStates = data;
+        }
+        else{
+          this.billingAddressStates = data;
+        }
+
+        // select first item by default
+
+        formGroup?.get('state')?.setValue(data[0]);
+      }
+    );
+
+
+  }
 
 }
