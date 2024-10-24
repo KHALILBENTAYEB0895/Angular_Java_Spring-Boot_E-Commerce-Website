@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from '../../common/country';
 import { State } from '../../common/state';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -27,9 +28,13 @@ export class CheckoutComponent implements OnInit{
 
   
   constructor(private formBuilder: FormBuilder,
-              private shopFromServices: ShopFromService) {}
+              private shopFromServices: ShopFromService,
+              private cartService: CartService) {}
   
   ngOnInit(): void {
+
+    this.reviewCartDetails();
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), CheckoutValidators.notOnlyWhitespace]),
@@ -89,7 +94,7 @@ export class CheckoutComponent implements OnInit{
     );
 
   }
-
+  
   
   onSubmit(){
     console.log("Handling the submit button");
@@ -136,6 +141,18 @@ export class CheckoutComponent implements OnInit{
     );
 
 
+  }
+
+  reviewCartDetails() {
+    // subscribe to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
+
+    // subscribe to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    );
   }
 
   get firstName() {return this.checkoutFormGroup.get('customer.firstName'); }
