@@ -1,3 +1,4 @@
+import { CheckoutValidators } from './../../validators/checkout-validators';
 import { ShopFromService } from './../../services/shop-from.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -31,8 +32,8 @@ export class CheckoutComponent implements OnInit{
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('',[Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('',[Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('',[Validators.required, Validators.minLength(2), CheckoutValidators.notOnlyWhitespace]),
+        lastName: new FormControl('',[Validators.required, Validators.minLength(2), CheckoutValidators.notOnlyWhitespace]),
         email: new FormControl('',
           [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]
         )
