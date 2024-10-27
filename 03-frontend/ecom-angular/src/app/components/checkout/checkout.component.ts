@@ -114,17 +114,17 @@ export class CheckoutComponent implements OnInit{
   // set up order
   let order = new Order();
   order.totalQuantity = this.totalQuantity;
-  order.totalprice = this.totalPrice;
+  console.log(`total quntitity: ${order.totalQuantity}`);
+  order.totalPrice = this.totalPrice;
+  console.log(`total price: ${order.totalQuantity}`);
+
 
   // get cart items
   const cartItems = this.cartService.cartItems;
 
-  // create orderItems from cartItems
-  let orderItems: OrderItem[] = [];
-  for (let i = 0; i < cartItems.length; i++) {
-    orderItems[i] = new OrderItem(cartItems[i]);
-    console.log('Order item added:', orderItems[i]); // Log added items
-  }
+  // Create orderItems from cartItems
+  const orderItems: OrderItem[] = cartItems.map( item => {const orderItem = new OrderItem(item); return orderItem; });
+
 
   // set up purchase
   let purchase = new Purchase();
@@ -150,12 +150,12 @@ export class CheckoutComponent implements OnInit{
   purchase.order = order;
   purchase.orderItems = orderItems;
 
-  console.log('Purchase object:', purchase); // Log the purchase object for debugging
+  console.log('Purchase object before sending:', JSON.stringify(purchase, null, 2));
 
   // call REST API via the CheckoutService
   this.checkoutService.placeOrder(purchase).subscribe(
     response => {
-      alert(`Your order has been received. \n Order tracking Number: ${response.orderTrackingNumber}`);
+      alert(`Your order has been received. \n Order tracking Number: ${response.orderTrackingNumber} , total price: ${order.totalPrice} , total quantity: ${order.totalQuantity}`);
       this.resetCart();
     },
     err => {
@@ -214,7 +214,7 @@ export class CheckoutComponent implements OnInit{
 
     // subscribe to cartService.totalPrice
     this.cartService.totalPrice.subscribe(
-      data => this.totalPrice = data
+      data => this.totalPrice = data 
     );
   }
 
