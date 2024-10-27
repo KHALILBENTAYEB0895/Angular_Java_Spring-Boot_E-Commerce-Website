@@ -30,6 +30,19 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.oktaSignin.remove();
+
+    this.oktaSignin.renderEl({
+      el: '#okta-sign-in-widget'}, // tag id in login.component
+      (response: any) =>{
+        if(response.status === 'SUCCESS'){
+          this.oktaAuth.signInWithRedirect();
+        }
+      },
+      (error: any) => {
+        throw error;
+      }
+    )
   }
 
 }
