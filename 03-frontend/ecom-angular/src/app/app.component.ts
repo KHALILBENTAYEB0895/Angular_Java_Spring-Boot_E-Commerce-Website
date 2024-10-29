@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  isLoggedIn: boolean = false;
   title = 'ecom-angular';
+  constructor(){
+    // this.isLoggedIn = localStorage.getItem('loggedIn') === 'false';
+  }
 }

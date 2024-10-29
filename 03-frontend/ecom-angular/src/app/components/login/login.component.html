@@ -1,4 +1,33 @@
-<!-- Section: Design Block -->
 <section class="container mt-5" style="margin-top: 100px !important;">
-<p>hello world</p>
+    <div class="simple-login-container p-3" style="background-color: #0da8e4; border-radius: 3%;">
+        <h2>Login</h2>
+        <form (ngSubmit)="onLogin()">
+            <div class="row">
+                <div class="col-md-12 form-group mt-4">
+                    <input type="text" class="form-control" placeholder="Username" 
+                     id="username" 
+                     [(ngModel)]="username"
+                     name="username" 
+                     required
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group mt-3">
+                    <input type="password" class="form-control" placeholder="Enter your Password"
+                     id="password" 
+                     name="password"
+                     [(ngModel)]="password"
+                     required
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group mt-2 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
 </section>
