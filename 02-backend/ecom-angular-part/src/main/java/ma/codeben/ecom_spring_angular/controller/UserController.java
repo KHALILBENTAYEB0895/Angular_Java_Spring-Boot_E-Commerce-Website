@@ -18,4 +18,12 @@ public class UserController {
                 .map(u -> u.getPassword().equals(user.getPassword()))
                 .orElse(false);
     }
+    @PostMapping("/register")
+    public  String register(@RequestBody User user){
+        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+            return "Username already exists";
+        }
+        userRepository.save(user);
+        return "User registered successfully";
+    }
 }
