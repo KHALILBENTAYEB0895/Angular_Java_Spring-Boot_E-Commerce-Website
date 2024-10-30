@@ -27,6 +27,17 @@
                     <button type="submit" class="btn btn-outline-primary">Login</button>
                 </div>
             </div>
+            <div class="row">
+                <a routerLink="/register" class="text-decoration-none">Sign up here</a> 
+            </div>
+            <div *ngIf="loginFailed" class="mt-2">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                >
+                    <strong>Invalid username or password.</strong> Please try again.
+                </div>
+            </div>
         </form>
 
     </div>

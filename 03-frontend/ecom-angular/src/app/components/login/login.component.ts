@@ -31,6 +31,9 @@ export class LoginComponent {
         }else{
           this.loginFailed = true;
         }
+      }, 
+      error => {
+        this.loginFailed = true;
       }
     );
   }
