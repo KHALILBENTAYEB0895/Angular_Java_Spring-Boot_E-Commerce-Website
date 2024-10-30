@@ -2,11 +2,11 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a routerLink="/products">
+      <a *ngIf="isLoggedIn" routerLink="/products">
         <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
       </a>
     </div>
-    <div><app-product-category-menu></app-product-category-menu></div>
+    <div *ngIf="isLoggedIn"><app-product-category-menu></app-product-category-menu></div>
   </aside>
   <!-- END MENU SIDEBAR-->
 
@@ -16,11 +16,25 @@
     <header class="header-desktop">
       <div class="section-content section-content-p30" style="padding: 10px;">
         <div class="container-fluid">
-          <div class="header-wrap">
-            <app-search></app-search>
-            <app-cart-status></app-cart-status>
+          <div class="header-wrap row d-flex justify-content-between">
+            <div class="col">
+              <app-search *ngIf="isLoggedIn"></app-search>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-end align-items-center">
+                <div><app-cart-status *ngIf="isLoggedIn"></app-cart-status></div>
+                <div>
+                  <i class="fas fa-sign-out-alt" 
+                    (click)="logout()" 
+                    *ngIf="isLoggedIn" 
+                    style="cursor: pointer; font-size: 1.5em; margin-left: 10px;" 
+                    title="Logout">
+                  </i>
+                </div>  
+              </div>
+              
+            </div>
           </div>
-          <div class="account-wrap"></div>
         </div>
       </div>
     </header>
