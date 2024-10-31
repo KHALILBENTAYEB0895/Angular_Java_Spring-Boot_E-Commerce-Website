@@ -3,7 +3,12 @@ package ma.codeben.ecom_spring_angular.controller;
 import ma.codeben.ecom_spring_angular.dao.UserRepository;
 import ma.codeben.ecom_spring_angular.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -19,11 +24,17 @@ public class UserController {
                 .orElse(false);
     }
     @PostMapping("/register")
-    public  String register(@RequestBody User user){
+    public ResponseEntity<Map<String, String>> register(@RequestBody User user){
+
+        Map<String, String> response = new HashMap<>();
+
         if(userRepository.findByUsername(user.getUsername()).isPresent()){
-            return "Username already exists";
+            response.put("error", "Username already exists");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
+
         userRepository.save(user);
-        return "User registered successfully";
+        response.put("message", "User registered successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
